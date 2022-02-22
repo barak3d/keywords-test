@@ -1,0 +1,15 @@
+{
+  "name": "keywords-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hashtagify": "^1.0.2",
+    "rake-modified": "^1.0.8"
+  }
+}
