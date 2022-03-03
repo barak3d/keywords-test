@@ -5,15 +5,25 @@ import { D3WordcloucPhrases } from "./get_top_phrases.js";
 
 tf.setBackend("cpu");
 const myArgs = process.argv.slice(2);
-const inputFile = myArgs[0] || "./input.txt";
-const outputFile = myArgs[1] || "use_output.txt";
+const keywordLib = myArgs[0] || "d3word";
+const inputFile = myArgs[1] || "./input.txt";
+const outputFile = myArgs[2] || "use_output.txt";
 const input_text = fs.readFileSync(inputFile, { encoding: "utf8", flag: "r" });
 const lib = new D3WordcloucPhrases();
-let rows_of_string = input_text.split("\n");
-let list_stopwords = "";
-var word_count = lib.get_top_phrases(rows_of_string, 50, list_stopwords);
-console.log("Word count", word_count);
-const phrases = Object.keys(word_count);
+import r from "rake-modified";
+const rake = r.default;
+let phrases;
+if (keywordLib === "rake") {
+  const res = rake(input_text);
+  phrases = Object.keys(res);
+  console.log("Rake", res);
+} else {
+  let rows_of_string = input_text.split("\n");
+  let list_stopwords = "";
+  var word_count = lib.get_top_phrases(rows_of_string, 50, list_stopwords);
+  console.log("D3 Word count", word_count);
+  phrases = Object.keys(word_count);
+}
 
 let result = [];
 use.load().then(async (model) => {
@@ -26,7 +36,9 @@ use.load().then(async (model) => {
       embeddings.arraySync()[0],
       phraseEmbedding.arraySync()[0]
     );
-    result.push({ phrase, distance });
+    const p = {};
+    p[phrase] = distance;
+    result.push(p);
   }
   result = result.sort((a, b) => b.distance - a.distance).splice(0, 10);
   const resStr = JSON.stringify(result, true, 4);

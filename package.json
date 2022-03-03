@@ -7,7 +7,8 @@
     "rake": "node rake.js",
     "hashtagify": "node hashtagify.js",
     "d3word": "node d3wordphrases.js",
-    "use": "node universal-sentence-encoder.js",
+    "key_use_d3": "node universal-sentence-encoder.js d3word",
+    "key_use_rake": "node universal-sentence-encoder.js rake",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
