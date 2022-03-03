@@ -1,5 +1,5 @@
-const fs = require("fs");
-const hashtagify = require("hashtagify");
+import * as fs from "fs";
+import hashtagify from "hashtagify";
 
 hashtagify.doFollowedByNumber = false;
 

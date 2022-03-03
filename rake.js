@@ -1,5 +1,6 @@
-const fs = require("fs");
-var rake = require("rake-modified").default;
+import * as fs from "fs";
+import r from "rake-modified";
+const rake = r.default;
 const myArgs = process.argv.slice(2);
 const inputFile = myArgs[0] || "./input.txt";
 const outputFile = myArgs[1] || "rake_output.txt";

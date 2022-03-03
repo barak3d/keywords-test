@@ -6,11 +6,16 @@
   "scripts": {
     "rake": "node rake.js",
     "hashtagify": "node hashtagify.js",
+    "d3word": "node d3wordphrases.js",
+    "use": "node universal-sentence-encoder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "@tensorflow-models/universal-sentence-encoder": "^1.3.3",
+    "@tensorflow/tfjs": "^3.13.0",
     "hashtagify": "^1.0.2",
     "rake-modified": "^1.0.8"
   }
