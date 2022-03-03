@@ -36,12 +36,11 @@ use.load().then(async (model) => {
       embeddings.arraySync()[0],
       phraseEmbedding.arraySync()[0]
     );
-    const p = {};
-    p[phrase] = distance;
-    result.push(p);
+    result.push({phrase, distance});
   }
   result = result.sort((a, b) => b.distance - a.distance).splice(0, 10);
-  const resStr = JSON.stringify(result, true, 4);
+  let resStr = ""
+  result.map((r) => resStr = `${resStr}${r.phrase},${r.distance}\n`);
   console.log("top 10 results by distance", resStr);
   fs.writeFileSync(outputFile, resStr, {
     encoding: "utf8",
